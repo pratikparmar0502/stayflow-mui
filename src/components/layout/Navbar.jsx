@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   AppBar,
   Toolbar,
@@ -8,13 +9,41 @@ import {
   Box,
   Container,
 } from "@mui/material";
+import { DarkMode, LightMode } from "@mui/icons-material";
+import {
+  TravelExplore,
+  Forest,
+  LocationCity,
+  Water,
+  Favorite,
+  AutoAwesome,
+  NightsStay,
+} from "@mui/icons-material";
 import { MoodContext } from "../../context/MoodContext";
 
 const Navbar = () => {
   const { mood, setMood } = useContext(MoodContext);
   const [scrolled, setScrolled] = useState(false);
 
-  // Scroll effect ke liye logic
+  const getLogoIcon = () => {
+    switch (mood) {
+      case "nature":
+        return <Forest sx={{ mr: 1, fontSize: "1.8rem" }} />;
+      case "urban":
+        return <LocationCity sx={{ mr: 1, fontSize: "1.8rem" }} />;
+      case "ocean":
+        return <Water sx={{ mr: 1, fontSize: "1.8rem" }} />;
+      case "romantic":
+        return <Favorite sx={{ mr: 1, fontSize: "1.8rem" }} />;
+      case "royal":
+        return <AutoAwesome sx={{ mr: 1, fontSize: "1.8rem" }} />;
+      case "midnight":
+        return <NightsStay sx={{ mr: 1, fontSize: "1.8rem" }} />;
+      default:
+        return <TravelExplore sx={{ mr: 1, fontSize: "1.8rem" }} />;
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -30,7 +59,6 @@ const Navbar = () => {
     { id: "ocean", icon: "🌊", label: "Ocean" },
     { id: "romantic", icon: "❤️", label: "Romantic" },
     { id: "royal", icon: "👑", label: "Royal" },
-    { id: "midnight", icon: "🌙", label: "Midnight" },
   ];
 
   return (
@@ -50,8 +78,22 @@ const Navbar = () => {
             variant="h5"
             fontWeight="bold"
             onClick={() => setMood("default")}
-            sx={{ cursor: "pointer", display: "flex", alignItems: "center" }}
+            sx={{
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              transition: "0.5s all ease", // Smooth transition for logo change
+              color: scrolled ? "primary.main" : "white",
+            }}
           >
+            <motion.div
+              key={mood} // Key change hote hi animation chalega
+              initial={{ rotate: -180, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              {getLogoIcon()}
+            </motion.div>
             StayFlow
           </Typography>
 
@@ -84,12 +126,33 @@ const Navbar = () => {
             ))}
           </Stack>
 
-          <Box>
-            <Button color="inherit">Login</Button>
-            <Button variant="contained" sx={{ ml: 2, borderRadius: "20px" }}>
-              Book Now
+          <Stack direction="row" spacing={2} alignItems="center">
+            {/* Dark Mode Toggle */}
+            <Button
+              onClick={() =>
+                setMood(mood === "midnight" ? "default" : "midnight")
+              }
+              sx={{
+                color: scrolled ? "text.primary" : "white",
+                minWidth: "40px",
+              }}
+            >
+              {mood === "midnight" ? <LightMode /> : <DarkMode />}
             </Button>
-          </Box>
+
+            <Button
+              variant="contained"
+              sx={{ borderRadius: "20px", px: 3, textTransform: "none" }}
+            >
+              Login
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{ borderRadius: "20px", px: 3, textTransform: "none" }}
+            >
+              Booking
+            </Button>
+          </Stack>
         </Toolbar>
       </Container>
     </AppBar>
