@@ -2,8 +2,6 @@ import { useState, useContext } from "react";
 import {
   Add,
   ArrowForward,
-  ArrowRightAlt,
-  Explore,
   Facebook,
   Instagram,
   Twitter,
@@ -450,14 +448,14 @@ const Home = () => {
       image: destination1,
       stays: "240+",
       color: "#0288d1",
-      description: "Sun beaches & vibrant nightlife",
+      description: "Sun beaches & nightlife",
     },
     {
       name: "Himalayas",
       image: destination2,
       stays: "180+",
       color: "#2e7d32",
-      description: "Majestic peaks & serene valleys",
+      description: "Majestic peaks & valleys",
     },
     {
       name: "Rajasthan",
@@ -1191,7 +1189,6 @@ const Home = () => {
           </Box>
         </Fade>
       </Modal>
-
       <Container sx={{ py: { xs: 6, md: 10 } }}>
         {/* Header */}
         <Box sx={{ mb: 8, textAlign: "center" }}>
@@ -1253,8 +1250,8 @@ const Home = () => {
                 transition={{ type: "spring", stiffness: 300 }}
                 sx={{
                   position: "relative",
-                  width: { xs: "280px", sm: "350px" },
-                  height: { xs: "280px", sm: "320px", md: "340px" },
+                  width: { xs: "100%", sm: "clamp(300px, 320px, 550px)" },
+                  height: "300px",
                   borderRadius: "28px",
                   overflow: "hidden",
                   cursor: "pointer",
@@ -1444,7 +1441,7 @@ const Home = () => {
       </Container>
 
       {/* Why Choose Us Section */}
-      {/* <Container sx={{ py: { xs: 8, md: 12 } }}>
+      <Container sx={{ py: { xs: 8, md: 12 } }}>
         <Box sx={{ textAlign: "center", mb: 8 }}>
           <Typography
             variant="h2"
@@ -1477,28 +1474,31 @@ const Home = () => {
             different.
           </Typography>
         </Box>
-
-        <Grid container spacing={4}>
+        <Grid
+          container
+          spacing={4}
+          sx={{ alignItems: "stretch", justifyContent: "center" }}
+        >
           {[
             {
               icon: "🏆",
               title: "Best Price Guarantee",
               description:
-                "Find a lower price elsewhere? We'll match it and give you 110% back!",
+                "Find lower price elsewhere? We'll match and give 110% back!",
               color: "#FFB300",
             },
             {
               icon: "💯",
               title: "100% Verified Stays",
               description:
-                "Every property personally verified for quality, safety, and amenities.",
+                "Every property personally verified for quality, safety.",
               color: "#4CAF50",
             },
             {
               icon: "🔒",
               title: "Secure & Safe Bookings",
               description:
-                "Bank-level encryption protects your personal and payment information.",
+                "Bank-level encryption protects your personal information.",
               color: "#2196F3",
             },
             {
@@ -1512,7 +1512,7 @@ const Home = () => {
               icon: "🎯",
               title: "Perfect Mood Matching",
               description:
-                "AI-powered mood matching finds your ideal stay based on preferences.",
+                "AI-powered mood matching finds your ideal based preferences.",
               color: getMoodColor(mood),
             },
             {
@@ -1523,44 +1523,77 @@ const Home = () => {
               color: "#9C27B0",
             },
           ].map((feature, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={index}
+              sx={{
+                display: "flex",
+              }}
+            >
               <Box
                 component={motion.div}
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ scale: 1.03, y: -8 }}
                 sx={{
-                  p: 4,
-                  borderRadius: "24px",
-                  background: "linear-gradient(145deg, #ffffff, #f5f5f5)",
-                  border: "1px solid rgba(0,0,0,0.05)",
-                  boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
+                  p: { xs: 3, md: 4 },
+                  borderRadius: "20px",
+                  background: "#ffffff",
+                  border: "1px solid #eee",
+                  boxShadow: "0 8px 30px rgba(0,0,0,0.04)",
+                  width: { xs: "100%", sm: "clamp(300px, 550px, 550px)" },
                   height: "100%",
-                  transition: "all 0.3s ease",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition:
+                    "box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease",
                   "&:hover": {
-                    boxShadow: `0 20px 50px ${feature.color}20`,
+                    boxShadow: `0 20px 40px ${feature.color}15`,
                     borderColor: `${feature.color}30`,
+                    background: `linear-gradient(145deg, #ffffff, ${feature.color}05)`,
                   },
                 }}
               >
-                <Typography
-                  variant="h1"
+                {/* Icon Container */}
+                <Box
                   sx={{
-                    fontSize: "4rem",
-                    mb: 2,
-                    lineHeight: 1,
+                    width: "70px",
+                    height: "70px",
+                    borderRadius: "20px",
+                    background: `${feature.color}15`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    mb: 3,
+                    fontSize: "2.5rem",
+                    flexShrink: 0,
                   }}
                 >
                   {feature.icon}
-                </Typography>
+                </Box>
+                {/* Title */}
                 <Typography
                   variant="h5"
                   fontWeight="800"
-                  sx={{ mb: 2, color: "#1a1a1a" }}
+                  sx={{
+                    mb: 2,
+                    color: "#1a1a1a",
+                    fontSize: { xs: "1.3rem", md: "1.5rem" },
+                    lineHeight: 1.3,
+                  }}
                 >
                   {feature.title}
                 </Typography>
+                {/* Description */}
                 <Typography
                   variant="body1"
-                  sx={{ color: "text.secondary", lineHeight: 1.6 }}
+                  sx={{
+                    color: "text.secondary",
+                    lineHeight: 1.6,
+                    flexGrow: 1,
+                    fontSize: { xs: "0.95rem", md: "1rem" },
+                  }}
                 >
                   {feature.description}
                 </Typography>
@@ -1568,7 +1601,7 @@ const Home = () => {
             </Grid>
           ))}
         </Grid>
-      </Container> */}
+      </Container>
 
       {/* --- DYNAMIC MOOD FOOTER --- */}
       <Box
