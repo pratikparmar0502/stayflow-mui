@@ -752,7 +752,7 @@ const Home = () => {
       </Box>
 
       {/* Main Content */}
-      <Container sx={{ py: 10 }}>
+      <Container sx={{ py: 7 }}>
         {/* Section Title */}
         <Box sx={{ textAlign: "center", mb: 8 }}>
           <Typography
@@ -1189,7 +1189,7 @@ const Home = () => {
           </Box>
         </Fade>
       </Modal>
-      <Container sx={{ py: { xs: 6, md: 10 } }}>
+      <Container sx={{ py: { xs: 6, md: 7 } }}>
         {/* Header */}
         <Box sx={{ mb: 8, textAlign: "center" }}>
           <Typography
@@ -1441,7 +1441,7 @@ const Home = () => {
       </Container>
 
       {/* Why Choose Us Section */}
-      <Container sx={{ py: { xs: 8, md: 12 } }}>
+      <Container sx={{ py: { xs: 8, md: 7 } }}>
         <Box sx={{ textAlign: "center", mb: 8 }}>
           <Typography
             variant="h2"
@@ -1610,11 +1610,11 @@ const Home = () => {
           bgcolor: "#0a0a0a",
           background: "linear-gradient(180deg, #0a0a0a 0%, #050505 100%)",
           color: "#fff",
-          pt: { xs: 10, md: 16 },
-          pb: { xs: 8, md: 10 },
+          pt: { xs: 10, md: 12 },
+          pb: { xs: 8, md: 8 },
           position: "relative",
           overflow: "hidden",
-          mt: 15,
+          mt: 8,
           borderTop: "1px solid rgba(255,255,255,0.08)",
           "&::before": {
             content: '""',
