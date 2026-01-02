@@ -659,6 +659,11 @@ const Home = () => {
           <Typography
             variant="h1"
             fontWeight="900"
+            component={motion.h1}
+            key={mood}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             sx={{
               fontSize: { xs: "2.6rem", md: "4rem" },
               textShadow: "2px 2px 10px rgba(0,0,0,0.5)",
@@ -854,6 +859,7 @@ const Home = () => {
                     overflow: "hidden",
                     boxShadow: "0 12px 40px rgba(0,0,0,0.06)",
                     border: "1px solid rgba(0,0,0,0.04)",
+                    borderColor: `${getMoodColor(mood)}20`,
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
