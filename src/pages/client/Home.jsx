@@ -1189,6 +1189,8 @@ const Home = () => {
           </Box>
         </Fade>
       </Modal>
+
+      {/* Top Destination */}
       <Container sx={{ py: { xs: 6, md: 7 } }}>
         {/* Header */}
         <Box sx={{ mb: 8, textAlign: "center" }}>
@@ -1603,6 +1605,254 @@ const Home = () => {
         </Grid>
       </Container>
 
+      {/* Testimonials Section */}
+      <Box
+        sx={{
+          background: "linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%)",
+          py: { xs: 8, md: 8 },
+        }}
+      >
+        <Container>
+          {/* Header */}
+          <Box sx={{ textAlign: "center", mb: 8 }}>
+            <Typography
+              variant="h2"
+              fontWeight="900"
+              sx={{
+                mb: 3,
+                fontSize: { xs: "2.5rem", md: "3.5rem" },
+                background: `linear-gradient(45deg, #1a1a1a, ${getMoodColor(
+                  mood
+                )})`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              ❤️ Loved By Travelers
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "text.secondary",
+                maxWidth: "700px",
+                mx: "auto",
+                fontWeight: 400,
+                fontSize: { xs: "1.1rem", md: "1.25rem" },
+                lineHeight: 1.6,
+              }}
+            >
+              Don't just take our word for it. Here's what our travelers have to
+              say.
+            </Typography>
+          </Box>
+
+          {/* Testimonials Grid */}
+          <Grid container spacing={4}>
+            {[
+              {
+                name: "Rahul Sharma",
+                role: "Frequent Traveler • Mumbai",
+                review:
+                  "The mood-based search is genius! Found the perfect romantic stay for our anniversary in Udaipur. Everything was exactly as shown in pictures.",
+                rating: 5,
+                avatarColor: "#d81b60",
+                stay: "Romantic Stay in Udaipur",
+                date: "March 2024",
+              },
+              {
+                name: "Priya Patel",
+                role: "Digital Nomad • Bangalore",
+                review:
+                  "As a remote worker, I need reliable wifi and good workspace. StayFlow's verified stays never disappoint. Best price guarantee is real!",
+                rating: 4,
+                avatarColor: "#0288d1",
+                stay: "Urban Loft in Bangalore",
+                date: "February 2024",
+              },
+              {
+                name: "Arjun Mehta",
+                role: "Family Traveler • Delhi",
+                review:
+                  "Booking for family trips made so easy. The 24/7 support helped us when we had flight delays. Kids loved the nature retreat in Coorg!",
+                rating: 5,
+                avatarColor: "#2e7d32",
+                stay: "Nature Retreat in Coorg",
+                date: "January 2024",
+              },
+            ].map((testimonial, index) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                key={index}
+                sx={{ justifyContent: "center" }}
+              >
+                <Box
+                  component={motion.div}
+                  whileHover={{ y: -8 }}
+                  sx={{
+                    p: 4,
+                    overflow: "hidden",
+                    borderRadius: "24px",
+                    background: "#ffffff",
+                    border: "1px solid #eee",
+                    boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
+                    height: "100%",
+                    width: {
+                      xs: "100%",
+                      sm: "600px",
+                      md: "300px",
+                      lg: "360px",
+                    },
+                    display: "flex",
+                    justifyContent: "center",
+                    mx: "auto",
+                    flexDirection: "column",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      boxShadow: "0 20px 50px rgba(0,0,0,0.1)",
+                      borderColor: getMoodColor(mood),
+                    },
+                  }}
+                >
+                  {/* Stars */}
+                  <Box sx={{ display: "flex", mb: 3 }}>
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        sx={{ color: "#FFB300", fontSize: "1.2rem", mr: 0.5 }}
+                      />
+                    ))}
+                  </Box>
+
+                  {/* Review Text */}
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      mb: 4,
+                      fontStyle: "italic",
+                      lineHeight: 1.7,
+                      color: "text.primary",
+                      flexGrow: 1,
+                      fontSize: "1.05rem",
+                    }}
+                  >
+                    "{testimonial.review}"
+                  </Typography>
+
+                  {/* Divider */}
+                  <Box sx={{ height: "1px", bgcolor: "#f0f0f0", mb: 3 }} />
+
+                  {/* User Info */}
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    {/* Avatar */}
+                    <Box
+                      sx={{
+                        width: 56,
+                        height: 56,
+                        borderRadius: "50%",
+                        bgcolor: testimonial.avatarColor,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        mr: 2,
+                        color: "#fff",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                      }}
+                    >
+                      {testimonial.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </Box>
+
+                    {/* User Details */}
+                    <Box sx={{ flexGrow: 1 }}>
+                      <Typography variant="subtitle1" fontWeight="800">
+                        {testimonial.name}
+                      </Typography>
+                      <Typography
+                        variant="caption"
+                        color="text.secondary"
+                        sx={{ display: "block" }}
+                      >
+                        {testimonial.role}
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Stay Details */}
+                  <Box sx={{ mt: 3, pt: 3, borderTop: "1px solid #f5f5f5" }}>
+                    <Typography
+                      variant="caption"
+                      fontWeight="600"
+                      color="text.secondary"
+                    >
+                      Stayed at:{" "}
+                      <Box component="span" sx={{ color: getMoodColor(mood) }}>
+                        {testimonial.stay}
+                      </Box>
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      sx={{ display: "block", mt: 0.5 }}
+                    >
+                      {testimonial.date}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+
+          {/* Stats Bar */}
+          <Box
+            sx={{
+              mt: 10,
+              p: 4,
+              borderRadius: "20px",
+              background: `linear-gradient(135deg, ${getMoodColor(
+                mood
+              )}15, ${getMoodColor(mood)}05)`,
+              border: `1px solid ${getMoodColor(mood)}20`,
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap",
+              gap: 3,
+              textAlign: "center",
+            }}
+          >
+            {[
+              { value: "4.8/5", label: "Average Rating", icon: "⭐" },
+              { value: "10,000+", label: "Happy Travelers", icon: "😊" },
+              { value: "98%", label: "Satisfaction Rate", icon: "📈" },
+              { value: "24/7", label: "Support Available", icon: "🛡️" },
+            ].map((stat, idx) => (
+              <Box key={idx}>
+                <Typography
+                  variant="h3"
+                  fontWeight="900"
+                  sx={{ color: getMoodColor(mood) }}
+                >
+                  {stat.icon} {stat.value}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 1 }}
+                >
+                  {stat.label}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Container>
+      </Box>
+
       {/* --- DYNAMIC MOOD FOOTER --- */}
       <Box
         component="footer"
@@ -1614,7 +1864,7 @@ const Home = () => {
           pb: { xs: 8, md: 8 },
           position: "relative",
           overflow: "hidden",
-          mt: 8,
+          // mt: 8,
           borderTop: "1px solid rgba(255,255,255,0.08)",
           "&::before": {
             content: '""',
