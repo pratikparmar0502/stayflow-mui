@@ -40,14 +40,14 @@ import {
   Bookmark,
 } from "@mui/icons-material";
 import { MoodContext } from "../../context/MoodContext";
-import { useHistory, useLocation } from "react-router-dom"; // Changed useNavigate to useHistory
+import { useHistory, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const { scrollYProgress } = useScroll();
   const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const { mood, setMood } = useContext(MoodContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const history = useHistory(); // Changed from useNavigate
+  const history = useHistory();
   const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
