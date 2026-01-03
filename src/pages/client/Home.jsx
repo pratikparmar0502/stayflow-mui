@@ -595,7 +595,7 @@ const Home = () => {
               display: "flex",
               alignItems: "center",
               boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-              flexWrap: { xs: "wrap", md: "nowrap" },
+              gap: { xs: 2, md: 0 },
               maxWidth: "800px",
               mx: "auto",
             }}
@@ -746,6 +746,10 @@ const Home = () => {
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    "&:hover": {
+                      boxShadow: `0 20px 40px ${getMoodColor(mood)}15`,
+                    },
                   }}
                 >
                   <Box sx={{ position: "relative", height: "220px" }}>
@@ -953,9 +957,12 @@ const Home = () => {
           <Box
             sx={{
               bgcolor: "background.paper",
-              width: "100%",
+              width: "95%",
               maxWidth: 600,
-              borderRadius: "24px",
+              borderRadius: "32px",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              position: "relative",
               boxShadow: 24,
               overflow: "hidden",
               outline: "none",
@@ -1134,15 +1141,27 @@ const Home = () => {
           sx={{ justifyContent: "center" }}
         >
           {dest.map((item, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={index}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <Box
                 component={motion.div}
                 whileHover={{ y: -12, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
                 sx={{
                   position: "relative",
-                  width: { xs: "100%", sm: "clamp(300px, 320px, 550px)" },
-                  height: "300px",
+                  width: "100%",
+                  maxWidth: { xs: "100%", sm: "340px" },
+                  height: "320px",
+                  mx: "auto",
                   borderRadius: "28px",
                   overflow: "hidden",
                   cursor: "pointer",
@@ -1422,6 +1441,7 @@ const Home = () => {
               key={index}
               sx={{
                 display: "flex",
+                justifyContent: "center",
               }}
             >
               <Box
@@ -1433,9 +1453,11 @@ const Home = () => {
                   background: "#ffffff",
                   border: "1px solid #eee",
                   boxShadow: "0 8px 30px rgba(0,0,0,0.04)",
-                  width: { xs: "100%", sm: "clamp(300px, 550px, 550px)" },
+                  width: "100%",
+                  maxWidth: { xs: "100%", sm: "340px", md: "360px" },
                   height: "100%",
                   display: "flex",
+                  mx: "auto",
                   flexDirection: "column",
                   transition:
                     "box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease",
@@ -1576,7 +1598,7 @@ const Home = () => {
                 sm={6}
                 md={4}
                 key={index}
-                sx={{ justifyContent: "center" }}
+                sx={{ display: "flex", justifyContent: "center" }}
               >
                 <Box
                   component={motion.div}
@@ -1589,15 +1611,10 @@ const Home = () => {
                     border: "1px solid #eee",
                     boxShadow: "0 10px 40px rgba(0,0,0,0.05)",
                     height: "100%",
-                    width: {
-                      xs: "100%",
-                      sm: "600px",
-                      md: "300px",
-                      lg: "360px",
-                    },
-                    display: "flex",
-                    justifyContent: "center",
+                    width: "100%",
+                    maxWidth: { md: "300px", lg: "360px" },
                     mx: "auto",
+                    display: "flex",
                     flexDirection: "column",
                     transition: "all 0.3s ease",
                     "&:hover": {
